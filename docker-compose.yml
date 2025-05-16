@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+    container_name: api-gateway
+    ports:
+      - "8000:8000"
+    networks:
+      - interviewhoo
+
+  jd-parser:
+    build:
+      context: ./services/jd-parser
+    container_name: jd-parser
+    ports:
+      - "5001:5000"
+    networks:
+      - interviewhoo
+
+  resume-parser:
+    build:
+      context: ./services/resume-parser
+    container_name: resume-parser
+    ports:
+      - "8001:8001"
+    networks:
+      - interviewhoo
+
+  ranking:
+    build:
+      context: ./services/ranking
+    container_name: ranking
+    ports:
+      - "5003:5000"
+    networks:
+      - interviewhoo
+
+
+networks:
+  interviewhoo:
+    driver: bridge
